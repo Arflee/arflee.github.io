@@ -41,11 +41,7 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <Navbar />
-          <BackgroundCanvas>
-            <PerlinBackground />
-          </BackgroundCanvas>
-          <main className="flex grow mt-20">{children}</main>
+          <main>{children}</main>
         </Providers>
       </body>
     </html>

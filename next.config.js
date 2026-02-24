@@ -1,17 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export',
-    transpilePackages: ['three'],
-    webpack(config) {
-    config.module.rules.push({
-      test: /\.(glsl|vs|fs|vert|frag)$/,
-      use: "raw-loader",
-    });
-    return config;
+  output: 'export',
+  transpilePackages: ['three'],
+  turbopack: {
+    rules: {
+      '*.{glsl,vs,fs,vert,frag}': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
+    },
   },
   images: {
     unoptimized: true,
   },
 };
-
 module.exports = nextConfig;
