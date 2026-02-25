@@ -1,78 +1,67 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
-import { Text, RoundedBox } from "@react-three/drei";
-import * as THREE from "three";
+import { RoundedBox, Text } from "@react-three/drei";
 
 export default function BusinessCard() {
-  const groupRef = useRef<THREE.Group>(null);
-  const { viewport } = useThree();
-  const mouse = useRef({ x: 0, y: 0 });
+  const linkedIn = "https://www.linkedin.com/in/arflee/";
+  const github = "https://github.com/Arflee";
 
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
-      mouse.current.y = -(e.clientY / window.innerHeight - 0.5) * 2;
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
-  useFrame((state) => {
-    if (!groupRef.current) return;
-    const t = state.clock.elapsedTime;
-
-    // Gentle float
-    groupRef.current.position.y = Math.sin(t * 0.6) * 0.08;
-  });
-
-  const scale = Math.min(viewport.width / 8, 1);
+  const openUrl = (url: string) => {
+    window.open(url, "_blank");
+  };
 
   return (
-    <group ref={groupRef} scale={scale}>
-      <RoundedBox args={[5.4, 3.2, 0.06]} radius={0.12} smoothness={6}>
-        <meshStandardMaterial
-          color="#fefefe"
-          metalness={0.1}
-          roughness={0.8}
-          envMapIntensity={1.5}
+    <group position={[0, 0, 0]}>
+      <RoundedBox
+        args={[3, 5 / 3, 0.015]}
+        radius={0.007}
+        steps={1}
+        smoothness={4}
+        bevelSegments={4}
+        creaseAngle={0.4}
+        castShadow
+      >
+        <meshPhysicalMaterial
+          roughness={0.5}
+          metalness={0.05}
+          color="#f3f3f3"
         />
       </RoundedBox>
 
       <Text
-        position={[-0.3, 0.45, 0.04]}
-        fontSize={0.52}
-        color="#ffffff"
-        anchorX="center"
-        anchorY="middle"
-        letterSpacing={0.06}
-      >
-        Your Name
-      </Text>
-
-      {/* Title */}
-      <Text
-        position={[-0.3, 0.0, 0.04]}
+        position={[0, 0.25, 0.008]}
         fontSize={0.18}
-        color="#c9a84c"
+        color="#111111"
         anchorX="center"
         anchorY="middle"
-        letterSpacing={0.2}
       >
-        FULL STACK ENGINEER
+        Matvei Sushinskii
       </Text>
 
-      {/* Contact info */}
       <Text
-        position={[-0.3, -0.5, 0.04]}
-        fontSize={0.13}
-        color="#888888"
+        position={[0, 0, 0.008]}
+        fontSize={0.12}
+        color="#0077b5"
         anchorX="center"
         anchorY="middle"
-        letterSpacing={0.05}
+        onClick={() => openUrl(linkedIn)}
+        onPointerOver={(e) => (document.body.style.cursor = "pointer")}
+        onPointerOut={(e) => (document.body.style.cursor = "default")}
       >
-        hello@yourname.dev  ·  github.com/yourname
+        LinkedIn
+      </Text>
+
+      <Text
+        position={[0, -0.25, 0.008]}
+        fontSize={0.12}
+        color="#000000"
+        anchorX="center"
+        anchorY="middle"
+        onClick={() => openUrl(github)}
+        onPointerOver={(e) => (document.body.style.cursor = "pointer")}
+        onPointerOut={(e) => (document.body.style.cursor = "default")}
+      >
+        Github
       </Text>
     </group>
   );

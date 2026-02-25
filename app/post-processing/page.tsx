@@ -3,7 +3,7 @@
 import {
   fallbackShader,
   postProcessingEffects,
-} from "@/config/post-processingEffects";
+} from "@/config/postProcessingEffects";
 import { RadioGroup, Radio } from "@heroui/radio";
 import LennaImage from "@/components/lennaImage";
 import { Canvas } from "@react-three/fiber";

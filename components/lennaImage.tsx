@@ -1,6 +1,6 @@
 "use client";
 
-import { textureVertexShader } from "@/config/post-processingEffects";
+import { textureVertexShader } from "@/config/postProcessingEffects";
 import { useThree, useLoader } from "@react-three/fiber";
 import { OrthographicCamera } from "@react-three/drei";
 import { TextureLoader } from "three";

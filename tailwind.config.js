@@ -1,11 +1,11 @@
-import {heroui} from "@heroui/theme"
+import { heroui } from "@heroui/theme";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
   content: [
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}"
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@heroui/theme/dist/components/(button|card|chip|code|image|input|kbd|link|listbox|navbar|popover|radio|slider|snippet|toggle|ripple|spinner|form|divider).js",
   ],
   theme: {
     extend: {
@@ -17,6 +17,6 @@ const config = {
   },
   darkMode: "class",
   plugins: [heroui()],
-}
+};
 
 module.exports = config;
