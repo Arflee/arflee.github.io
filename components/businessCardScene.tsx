@@ -12,6 +12,7 @@ export default function BusinessCardScene() {
         maxPolarAngle={Math.PI / 2}
         minPolarAngle={Math.PI / 2}
         enableZoom={false}
+        enablePan={false}
       />
       {/* <ShootingStars/> */}
       <hemisphereLight intensity={0.4} groundColor="gray" />
